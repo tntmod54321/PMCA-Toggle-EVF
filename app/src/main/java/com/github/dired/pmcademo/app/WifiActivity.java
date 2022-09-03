@@ -1,4 +1,4 @@
-package com.github.ma1co.pmcademo.app;
+package com.github.dired.pmcademo.app;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -31,7 +31,7 @@ public class WifiActivity extends BaseActivity {
         textView = (TextView) findViewById(R.id.logView);
         webView = (WebView) findViewById(R.id.webView);
 
-        wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+        wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
 
         wifiStateReceiver = new BroadcastReceiver() {
             @Override

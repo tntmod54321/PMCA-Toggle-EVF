@@ -1,4 +1,4 @@
-package com.github.ma1co.pmcademo.app;
+package com.github.dired.pmcademo.app;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

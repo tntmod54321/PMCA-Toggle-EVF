@@ -1,4 +1,4 @@
-package com.github.ma1co.pmcademo.app;
+package com.github.dired.pmcademo.app;
 
 import java.util.ArrayList;
 

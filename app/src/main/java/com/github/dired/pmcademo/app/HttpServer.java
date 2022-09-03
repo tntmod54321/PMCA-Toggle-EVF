@@ -1,4 +1,4 @@
-package com.github.ma1co.pmcademo.app;
+package com.github.dired.pmcademo.app;
 
 import fi.iki.elonen.NanoHTTPD;
 

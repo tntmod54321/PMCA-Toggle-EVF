@@ -2,7 +2,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-    <com.github.ma1co.pmcademo.app.ScalingBitmapView
+    <com.github.dired.pmcademo.app.ScalingBitmapView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/imageView"/>

@@ -1,4 +1,4 @@
-package com.github.ma1co.pmcademo.app;
+package com.github.dired.pmcademo.app;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,7 +12,7 @@ public class WifiSettingActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+        wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
         wifiManager.setWifiEnabled(true);
     }
 

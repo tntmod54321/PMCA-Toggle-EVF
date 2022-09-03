@@ -1,4 +1,4 @@
-package com.github.ma1co.pmcademo.app;
+package com.github.dired.pmcademo.app;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -34,7 +34,7 @@ public class WifiDirectActivity extends BaseActivity {
 
         textView = (TextView) findViewById(R.id.logView);
 
-        wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+        wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
         wifiDirectManager = (DirectManager) getSystemService(DirectManager.WIFI_DIRECT_SERVICE);
 
         wifiStateReceiver = new BroadcastReceiver() {
