@@ -23,13 +23,23 @@ I made a proof video:
 ![](https://github.com/dired/PMCA-HDMICam/blob/master/docs/proof_video_cleanhdmi_e2610.gif)
 
 ### Preventive information
-On some cameras, like the A5000 (and I think I read someone found out about the HX200V), a clean HDMI output can also be achieved by writing a value to a specific memory address of the device. If this is not too much of a hastle for you, it may be a "more satisfying" solution? In case of my HX400V I have not found for certain to what adress I have to write, nor am I keen on digging that deep.
+On some cameras, like the A5000 (and I think I read someone found out about the HX200V), a clean HDMI output can also be achieved through another method: by writing a value to a specific memory address of the device. If this is not too much of a hastle for you, it may be a "more satisfying" solution?
+
+In case of my HX400V I have not found for certain to what adress I have to write, nor am I keen on digging that deep.
 In case you want to dig deeper, without any guarantee from me that you will get the same thing with just more effort, see (this thread)[https://github.com/ma1co/OpenMemories-Tweak/issues/70].
+
+## Features / Use-Cases
+
+The killer feature is the clean HDMI output. Before, people were using the non-clean output and cropping the text away / using an even smaller resolution that shows black bars where the text is. Keep in mind that since Sony did not officially support clean HDMI in the first case for your camera, the support by the firmware (meaning the settings you have in the menu) is limited, and the resolution is probably fixed to 4:3 (the sensor's ratio) and lower than what you would get when you would record a video with the camera in the normal way (all this depends heavily on your model, I can only speak for my HX400V). Also ***you must know that at this moment in time, no settings (ISO etc.) are available during / after entering the clean HDMI "mode"***, except for zooming and triggering autofocus/finder by pressing the trigger half-way through. (note to myelf: test if settings from manual mode persist in the app)
+
+The main use-case in my eyes is that you could can use the clean hdmi output as a webcam. This is actually a killer-feature, making all those "old" sony cams useable again for streaming, surveillance, timelapse, fixed-camera-use-as-you-name-it.
+Simply buy a "hdmi to usb video capture card", a "HDMI-Micro-D to HDMI-A Cable", possibly a "dummy battery for sony NP-BX1" to use it with a power supply instead of a battery.
+I myself bought a cheap hdmi to usb 3 video capture card grapper with 1080 resolution and supposedly 60fps (although I don't need more than 720 resolution and 30fps because of the HX400V's output) for 17€, the cable for 2,06€ and the dummy battery for 8,59€. (The HX400V I got used for 115€)
 
 ## Installation
 
 1. Download the pmca-gui application from [https://github.com/ma1co/Sony-PMCA-RE] (Releases-Page). For me it was pmca-gui-v0.18-win.exe
-2. Download the .apk from this repository's Releases-Page.
+2. Download the .apk from this repository's Releases-Page. [https://github.com/dired/PMCA-HDMICam/releases/tag/v0.1]
 3. Connect the Camera via USB and make sure the camera is powered on.
 4. Start the pmca-gui application.
 5. Inside the pmca-gui v0.18, press "Get camera info" without any purpose except for you to see valid output - the text-box below should show your camera model and some other info.
@@ -75,15 +85,6 @@ Even if you don't have the error e:62:10 (which is I think unlikely :D if you co
 
 Hence we here have this dedictated repo. It's whole purpose is for now to at least give the normal everyday user a simple step-by-step installation (see [#installation]), and a ready-to-install .apk that he can us within the process (see Releases-Page). Then she/he can use the camera as a webcam or whatever as-is, good enough - (i think this is already much nicer to have this way). End of the story for now.
 
-
-## Features / Use-Cases
-
-The killer feature is the clean HDMI output. Before, people were using the non-clean output and cropping the text away / using an even smaller resolution that shows black bars where the text is. Keep in mind that since Sony did not officially support clean HDMI in the first case for your camera, the support by the firmware (meaning the settings you have in the menu) is limited, and the resolution is probably fixed to 4:3 (the sensor's ratio) and lower than what you would get when you would record a video with the camera in the normal way (all this depends heavily on your model, I can only speak for my HX400V). Also ***you must know that at this moment in time, no settings (ISO etc.) are available during / after entering the clean HDMI "mode"***, except for zooming and triggering autofocus/finder by pressing the trigger half-way through. (note to myelf: test if settings from manual mode persist in the app)
-
-The main use-case in my eyes is that you could can use the clean hdmi output as a webcam. This is actually a killer-feature, making all those "old" sony cams useable again for streaming, surveillance, timelapse, fixed-camera-use-as-you-name-it.
-Simply buy a "hdmi to usb video caputre card", a "HDMI-Micro-D to HDMI-A Cable", possibly a "dummy battery for sony NP-BX1" to use it with a power supply instead of a battery.
-I myself bought a cheap hdmi to usb 3 video capture card grapper with 1080 resolution and supposedly 60fps (although I don't need more than 720 resolution and 30fps because of the HX400V's output) for 17€, the cable for 2,06€ and the dummy battery for 8,59€. (The HX400V I got used for 115€)
-
 ## Feedback / Contribution
 
 Of course if you encounter problems that don't go beyond what I promised (otherwise I will let you know), feel free to write an Issue or better a Pull request.
@@ -100,7 +101,8 @@ In case you would like to develop this a little, I already have some things in m
 * Cleaning away the stuff from PMCADemo we don't need - talking about all the other features except "Camera", and the overarching menu that lists other features. I personally don't have a problem with keeping this (since it starts with "Camera" anyway, if you don't exit it via trash-button - so no time-saver) but it is actually unnecessary and should not be here in the HDMICam PMCA if you think about it. Feel free to throw that garbage away, I would like it if someone feels free to do that.
 * Maybe instead of throwing away the overarching menu, have the item "Camera" and another useful item "Settings" - this bullet point is about a potential "Settings"-menu. It could offer the settings from the camera's original menu, that relate to HDMI, like output resolution (for me 1080p and 1080i, although it's not what I really get :D). Maybe this would also be a better option to change/keep image settings like ISO. If you like, have a go. Let's work on it together :)
 * Offering the A5000- and other available memory-"hacks" that are valid for some devices and relate to HDMI. E.g., as I read, connecting to the a5000 via telnet (can be enabled in the PMCA OpenMemories Tweak) and issuing a `bk.elf w 0x01070a47 00` results in a clean hdmi output with 1080p resolution [https://github.com/ma1co/OpenMemories-Tweak/issues/70#issuecomment-799567832]. Other hacks, like for the HX200V I believe I read somewhere, exist. And this App could be a great place to unite them and make them easily accesible via an option in e.g. a "Settings"-Menu of the HDMICam PMCA. I don't know though, if writing memory is possible from user space / from the running android app - If someone thinks this is a good idea, you have me lost, but as I said I would support as much as is in my power 
-* ...? (might have forgotten some other thing I thought of before)
+* Adapting the build system to properly reflect the current version dynamically (as you can see it's all dirty right now). Generally cleaning up the project, as would be good from a devops but also gradle expert's perspective. If there is no further activity, I don't mind keeping it as is, otherwise, I will do the cleanup as good as I can myself firstly.
+* ... (other ideas?)
 
 All in all I think it's a nice idea, given the wide ranges of supported devices. Although, on the other hand, these devices are as old as ranging from 6 to 10 years. People maybe just bought a new camera in the meanwhile. On the other hand, many people might not be buying a new camera so often, still using their "old" cam from time to time, or see this and think it's a cool idea to give their old camera to their kid as a webcam. 
 
@@ -140,50 +142,8 @@ Let me know if it doesn't work for you.
 
 ## Supported devices
 
-This is the list of devices from @ma1co's OpenMemories-Framework, which is the underlaying framework for all OpenMemories PCMAs.
+This is the list of devices supported by @ma1co's OpenMemories-Framework, which is the underlaying framework for all OpenMemories PCMAs.
+For a current list, please see [https://github.com/ma1co/OpenMemories-Framework/blob/master/docs/Cameras.md] and [https://openmemories.readthedocs.io/devices.html](https://openmemories.readthedocs.io/devices.html)
 
-(Copy-Paste from @ma1co's Cameras.md in the OpenMemories-Framework docs:)[https://github.com/ma1co/OpenMemories-Framework/blob/master/docs/Cameras.md]
-| Announcement | Model | API version | Firmware |
-| --- | --- | --- | --- |
-| [2012-08-29](http://blog.sony.com/press/new-sony-nex-5r-camera-delivers-professional-imaging-power-and-wi-fi-convenience-in-lightweight-stylish-package/) | NEX5R | 1.0 (1.1 since FW 1.02) | [update](https://esupport.sony.com/p/model-home.pl?mdl=NEX5R#/downloadTab) |
-| [2012-09-12](http://blog.sony.com/press/new-sony-%CE%B1-nex-6-camera-delivers-full-dslr-experience-in-pocket-sized-package/) | NEX6 | 1.0 (1.1 since FW 1.02) | [update](https://esupport.sony.com/p/model-home.pl?mdl=NEX6#/downloadTab) |
-| [2013-08-26](http://blog.sony.com/press/sony-introduces-ultra-portable-nex-5-t-compact-system-camera-with-wi-fi-nfc-and-fast-hybrid-af/) | NEX5T | 1.1 | [update](https://esupport.sony.com/p/model-home.pl?mdl=NEX5T#/downloadTab) |
-| [2013-10-15](http://blog.sony.com/press/sony-introduces-first-full-frame-e-mount-lenses-2/) | A7 | 2.3 | [update](https://esupport.sony.com/p/model-home.pl?mdl=ILCE7#/downloadTab) |
-| [2013-10-15](http://blog.sony.com/press/sony-introduces-first-full-frame-e-mount-lenses-2/) | A7R | 2.3 | [update](https://esupport.sony.com/p/model-home.pl?mdl=ILCE7R#/downloadTab) |
-| [2014-01-06](http://blog.sony.com/press/a5000/) | A5000 | 2.3 | [update](https://esupport.sony.com/p/model-home.pl?mdl=ILCE5000#/downloadTab) |
-| [2014-01-06](http://blog.sony.com/press/as100v/) | AS100V | 2.5 | [update](https://esupport.sony.com/p/model-home.pl?mdl=HDRAS100V#/downloadTab) |
-| [2014-02-11](http://blog.sony.com/press/sony-electronics-introduces-the-versatile-%CE%B16000-interchangeable-lens-camera-with-worlds-fastest-autofocus-system1/) | A6000 | 2.4 | [update](https://esupport.sony.com/p/model-home.pl?mdl=ILCE6000#/downloadTab) |
-| 2014-02-11 | HX60 / HX60V | 2.4 | [update](https://esupport.sony.com/p/model-home.pl?mdl=DSCHX60V#/downloadTab) |
-| [2014-02-11](http://blog.sony.com/press/sony-electronics-announces-range-of-impressive-new-cyber-shot-cameras/) | HX400 / HX400V | 2.4 | [update](https://esupport.sony.com/p/model-home.pl?mdl=DSCHX400V#/downloadTab) |
-| [2014-04-06](http://blog.sony.com/press/28061/) | A7S | 2.6 | [update](https://esupport.sony.com/p/model-home.pl?mdl=ILCE7S#/downloadTab) |
-| [2014-05-15](http://blog.sony.com/press/28315/) | RX100M3 | 2.6 | [update](https://esupport.sony.com/p/model-home.pl?mdl=DSCRX100M3#/downloadTab) |
-| [2014-08-18](http://blog.sony.com/press/sony-debuts-ultra-compact-%CE%B15100-interchangeable-lens-camera-with-impressive-autofocus/) | A5100 | 2.7 | [update](https://esupport.sony.com/p/model-home.pl?mdl=ILCE5100#/downloadTab) |
-| [2014-09-03](http://blog.sony.com/press/sony-expands-innovative-lens-style-camera-line-with-new-interchangeable-lens-model-and-30x-zoom-model/) | QX1 | 2.8 | dump |
-| [2014-09-03](http://blog.sony.com/press/sony-expands-innovative-lens-style-camera-line-with-new-interchangeable-lens-model-and-30x-zoom-model/) | QX30 | | |
-| [2014-09-03](http://blog.sony.com/press/new-sony-action-cam-mini-pov-camera-is-ready-for-adventure/) | AZ1 | 2.9 | [update](https://esupport.sony.com/p/model-home.pl?mdl=HDRAZ1#/downloadTab) |
-| [2014-11-26](http://blog.sony.com/press/sony-introduces-the-%CE%B17ii-the-worlds-first-full-frame-camera-with-5-axis-image-stabilization/) | A7M2 | 2.10 | [update](https://esupport.sony.com/p/model-home.pl?mdl=ILCE7M2#/downloadTab) |
-| [2015-01-05](http://blog.sony.com/press/sonys-newest-handycam-delivers-4k-clarity-and-detail-in-a-compact-package/) | CX440 / CX480 / PJ410 / PJ440 | 2.11 | dump |
-| [2015-01-05](http://blog.sony.com/press/sonys-newest-handycam-delivers-4k-clarity-and-detail-in-a-compact-package/) | CX620 / CX670 / PJ620 / PJ670 | | |
-| 2015-01-05 | AX30 / AXP35 | 2.11 | [update](https://esupport.sony.com/p/model-home.pl?mdl=FDRAXP35#/downloadTab) |
-| [2015-01-05](http://blog.sony.com/press/sonys-newest-handycam-delivers-4k-clarity-and-detail-in-a-compact-package/) | AX33 / AXP33 | 2.11 | [update](https://esupport.sony.com/p/model-home.pl?mdl=FDRAX33#/downloadTab) |
-| [2015-01-05](http://blog.sony.com/press/sony-introduces-new-4k-and-full-hd-action-cams-at-ces-2015/) | AS200V | 2.12 | dump |
-| [2015-01-05](http://blog.sony.com/press/sony-introduces-new-4k-and-full-hd-action-cams-at-ces-2015/) | X1000V | 2.12 | [update](https://esupport.sony.com/p/model-home.pl?mdl=FDRX1000V#/downloadTab) |
-| [2015-04-13](http://blog.sony.com/press/sony-introduces-duo-of-worlds-smallest-30x-zoom-cameras/) | HX90 / HX90V | 2.13 | dump |
-| [2015-04-13](http://blog.sony.com/press/sony-introduces-duo-of-worlds-smallest-30x-zoom-cameras/) | WX500 | | |
-| [2015-06-10](http://blog.sony.com/press/sonys-new-%CE%B17r-ii-camera-delivers-innovative-imaging-experience-with-worlds-first-back-illuminated-35mm-full-frame-sensor1/) | A7RM2 | 2.14 | [update](https://esupport.sony.com/p/model-home.pl?mdl=ILCE7RM2#/downloadTab) |
-| [2015-06-10](http://blog.sony.com/press/sonys-rx100-iv-and-rx10-ii-cameras-bring-professional-imaging-experience-to-acclaimed-cyber-shot-rx-series/) | RX10M2 | 2.14 | [update](https://esupport.sony.com/p/model-home.pl?mdl=DSCRX10M2#/downloadTab) |
-| [2015-06-10](http://blog.sony.com/press/sonys-rx100-iv-and-rx10-ii-cameras-bring-professional-imaging-experience-to-acclaimed-cyber-shot-rx-series/) | RX100M4 | 2.14 | [update](https://esupport.sony.com/p/model-home.pl?mdl=DSCRX100M4#/downloadTab) |
-| [2015-09-11](http://blog.sony.com/press/sony-expands-range-of-full-frame-%CE%B1-cameras-with-the-launch-of-ultra-sensitive-%CE%B17s-ii/) | A7SM2 | 2.14 | [update](https://esupport.sony.com/p/model-home.pl?mdl=ILCE7SM2#/downloadTab) |
-| [2015-10-14](http://blog.sony.com/2015/10/sony-introduces-new-palm-sized-rx1r-ii-camera-with-42-4-mp-full-frame-image-sensor/) | RX1RM2 | 2.14 | dump |
-| [2016-01-05](http://blog.sony.com/press/sony-announces-new-flagship-4k-camcorder-with-enhanced-image-and-sound-quality/) | CX450 / CX455 / CX485 | | |
-| [2016-01-05](http://blog.sony.com/press/sony-announces-new-flagship-4k-camcorder-with-enhanced-image-and-sound-quality/) | CX625 / CX675 / CX680 / PJ675 / PJ680 | 2.15 | dump |
-| 2016-01-05 | AX40 / AX55 / AXP55 | 2.15 | [update](https://esupport.sony.com/p/model-home.pl?mdl=FDRAX40#/downloadTab) |
-| [2016-01-05](http://blog.sony.com/press/sony-announces-new-flagship-4k-camcorder-with-enhanced-image-and-sound-quality/) | AX53 | 2.15 | [update](https://esupport.sony.com/p/model-home.pl?mdl=FDRAX53#/downloadTab) |
-| [2016-01-05](http://blog.sony.com/press/sony-introduces-latest-action-cam-with-enhanced-functionality-and-design/) | AS50 | 2.15 | [update](https://esupport.sony.com/p/model-home.pl?mdl=HDRAS50R#/downloadTab) |
-| [2016-02-03](http://blog.sony.com/press/sony-introduces-new-%CE%B16300-camera-with-worlds-fastest-autofocus/) | A6300 | 2.15 | [update](https://esupport.sony.com/p/model-home.pl?mdl=ILCE6300#/downloadTab) |
-| [2016-03-07](http://blog.sony.com/press/sony-announces-new-hx80-compact-camera-with-30x-zoom-and-electronic-viewfinder/) | HX80 | | |
-| [2016-03-29](http://blog.sony.com/press/sonys-new-cyber-shot-rx10-iii-camera-brings-extended-zoom-capability-to-acclaimed-rx-line/) | RX10M3 | 2.15 | dump |
-| [2016-09-09](http://blog.sony.com/press/sony-announces-new-flagship-4k-and-hd-action-cams-with-superior-image-stabilization/) | AS300 | 2.15 | [update](https://esupport.sony.com/p/model-home.pl?mdl=HDRAS300R#/downloadTab) |
-| [2016-09-09](http://blog.sony.com/press/sony-announces-new-flagship-4k-and-hd-action-cams-with-superior-image-stabilization/) | X3000 | 2.15 | [update](https://esupport.sony.com/p/model-home.pl?mdl=FDRX3000R#/downloadTab) |
-| [2016-10-06](http://blog.sony.com/press/sony-announces-new-addition-to-acclaimed-line-of-cyber-shot-rx-cameras/) | RX100M5 | 2.16 | [update](https://esupport.sony.com/p/model-home.pl?mdl=DSCRX100M5#/downloadTab) |
-| [2016-10-06](http://blog.sony.com/press/sony-introduces-new-α6500-camera-with-exceptional-all-around-performance/) | A6500 | 2.17 | [update](https://esupport.sony.com/p/model-home.pl?mdl=ILCE6500#/downloadTab) |
+# Thanks
+I deeply thank everyone that made the PMCA-RE a reality. Your efforts are worth much more than what a new camera would have cost me <3
