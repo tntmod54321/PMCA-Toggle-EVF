@@ -87,7 +87,7 @@ Hence we here have this dedictated repo. It's whole purpose is for now to at lea
 
 ## Feedback / Contribution
 
-Of course if you encounter problems that don't go beyond what I promised (otherwise I will let you know), feel free to write an Issue or better a Pull request.
+Of course if you encounter problems that don't go beyond what I promised (otherwise I will let you know), feel free to write an Issue, open a discussion, or commit the change yourself.
 
 I don't have any problems. I am recording for the whole time while I am creating this repository since I have it working like 4 hours ago (even on battery, not power supply). Clean HDMI out, app doesn't crash or whatever, all I hoped for and needed!
 
@@ -143,7 +143,101 @@ Let me know if it doesn't work for you.
 ## Supported devices
 
 This is the list of devices supported by @ma1co's OpenMemories-Framework, which is the underlaying framework for all OpenMemories PCMAs.
-For a current list, please see [https://github.com/ma1co/OpenMemories-Framework/blob/master/docs/Cameras.md] and [https://openmemories.readthedocs.io/devices.html](https://openmemories.readthedocs.io/devices.html)
+Here I list all supported devices as you can also find them listed at [OpenMemories-Framework Cameras.md](https://github.com/ma1co/OpenMemories-Framework/blob/master/docs/Cameras.md) and [https://openmemories.readthedocs.io/devices.html](https://openmemories.readthedocs.io/devices.html):
+
+| Camera Model |
+| --- |
+| NEX5R |
+| NEX6 |
+| NEX5T |
+| A7 |
+| A7R |
+| A5000 |
+| AS100V |
+| A6000 |
+| HX60 / HX60V |
+| HX400 / HX400V |
+| A7S |
+| RX100M3 |
+| A5100 |
+| QX1 |
+| QX30 |
+| AZ1 |
+| A7M2 |
+| CX440 / CX480 / PJ410 / PJ440 |
+| CX620 / CX670 / PJ620 / PJ670 |
+| AX30 |
+| AX33 |
+| AS200V |
+| X1000V |
+| HX90 / HX90V |
+| WX500 |
+| A7RM2 |
+| RX10M2 |
+| RX100M4 |
+| A7SM2 |
+| RX1RM2 |
+| CX450 / CX455 / CX485 |
+| CX625 / CX675 / CX680 / PJ675 / PJ680 |
+| AX40 / AX55 / AXP55 |
+| AX53 |
+| AS50 |
+| A6300 |
+| HX80 |
+| RX10M3 |
+| AS300 |
+| X3000 |
+| RX100M5 |
+| A6500 |
+| DSC-HX60 |
+| DSC-HX90 |
+| DSC-HX400 |
+| DSC-RX1RM2 |
+| DSC-RX10M2 |
+| DSC-RX10M3 |
+| DSC-RX100M3 |
+| DSC-RX100M4 |
+| DSC-RX100M5 |
+| DSC-WX500 |
+| FDR-AX30 |
+| FDR-AX33 |
+| FDR-AX40 |
+| FDR-AX53 |
+| FDR-AX55 |
+| FDR-AXP33 |
+| FDR-AXP35 |
+| FDR-AXP55 |
+| FDR-X1000V |
+| FDR-X3000 |
+| HDR-AS50 |
+| HDR-AS100V |
+| HDR-AS200V |
+| HDR-AS300 |
+| HDR-AZ1 |
+| HDR-CX405 |
+| HDR-CX450 |
+| HDR-CX625 |
+| HDR-CX670 |
+| HDR-CX675 |
+| HDR-CX680 |
+| HDR-PJ410 |
+| HDR-PJ670 |
+| HDR-PJ675 |
+| ILCE-7 |
+| ILCE-7M2 |
+| ILCE-7R |
+| ILCE-7RM2 |
+| ILCE-7S |
+| ILCE-7SM2 |
+| ILCE-5000 |
+| ILCE-5100 |
+| ILCE-6000 |
+| ILCE-6300 |
+| ILCE-6500 |
+| ILCE-QX1 |
+| NEX-5R |
+| NEX-5T |
+| NEX-6 |
 
 # Thanks
 I deeply thank everyone that made the PMCA-RE a reality. Your efforts are worth much more than what a new camera would have cost me <3
