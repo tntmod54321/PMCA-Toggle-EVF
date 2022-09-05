@@ -39,7 +39,7 @@ I myself bought a cheap hdmi to usb 3 video capture card grapper with 1080 resol
 ## Installation
 
 1. Download the pmca-gui application from [https://github.com/ma1co/Sony-PMCA-RE] (Releases-Page). For me it was pmca-gui-v0.18-win.exe
-2. Download the .apk from this repository's Releases-Page. [https://github.com/dired/PMCA-HDMICam/releases/tag/v0.1]
+2. Download the .apk from this repository's Releases-Page. [https://github.com/dired/PMCA-HDMICam/releases]
 3. Connect the Camera via USB and make sure the camera is powered on.
 4. Start the pmca-gui application.
 5. Inside the pmca-gui v0.18, press "Get camera info" without any purpose except for you to see valid output - the text-box below should show your camera model and some other info.
