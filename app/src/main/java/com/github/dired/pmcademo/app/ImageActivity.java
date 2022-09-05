@@ -1,4 +1,4 @@
-package com.github.dired.pmcademo.app;
+package com.github.dired.pmcahdmicam;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

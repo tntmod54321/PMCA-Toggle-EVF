@@ -1,49 +1,44 @@
-//apply plugin: 'com.android.application'
-//
-//android {
-//    compileSdkVersion 10
-//    buildToolsVersion "25.0.2"
-//
-//    defaultConfig {
-//        applicationId "com.github.ma1co.pmcademo.app"
-//        minSdkVersion 10
-//        targetSdkVersion 10
-//        versionCode "git -C ${projectDir} rev-list --first-parent --count HEAD".execute().text.trim().toInteger()
-//        versionName "git -C ${projectDir} describe --always --tags --dirty".execute().text.trim().replaceAll("^v", "")
-//    }
-//
-//    compileOptions {
-//        sourceCompatibility JavaVersion.VERSION_1_6
-//        targetCompatibility JavaVersion.VERSION_1_6
-//    }
-//}
-//
-//android.applicationVariants.all { variant ->
-//    variant.outputs.each { output ->
-//        def apkName = "PMCADemo-${output.baseName}-${variant.versionName}.apk"
-//        output.outputFile = new File(output.outputFile.parent, apkName)
-//    }
-//}
-//
-//dependencies {
-//    compile 'com.github.ma1co.OpenMemories-Framework:framework:-SNAPSHOT'
-//    provided 'com.github.ma1co.OpenMemories-Framework:stubs:-SNAPSHOT'
-//    compile 'com.nanohttpd:nanohttpd:2.1.1'
-//}
-//
-
 apply plugin: 'com.android.application'
+
+def getVersionCode = { ->
+    try {
+        def code = new ByteArrayOutputStream()
+        exec {
+            commandLine 'git', 'rev-list', '--first-parent', "--count" , "HEAD"
+            standardOutput = code
+        }
+        String s = code
+        Integer version = s as Integer
+        return version
+    }
+    catch (ignored) {
+        return -1;
+    }
+}
+
+def getVersionName = { ->
+    try {
+        def stdout = new ByteArrayOutputStream()
+        exec {
+            commandLine 'git', 'describe', '--tags', '--abbrev=0'
+            standardOutput = stdout
+        }
+        return stdout.toString().trim()
+    }
+    catch (ignored) {
+        return null;
+    }
+}
 
 android {
     compileSdkVersion 28
-//    buildToolsVersion "25.0.2"
 
     defaultConfig {
-        applicationId "com.github.dired.pmcademo.app"
+        applicationId "com.github.dired.pmcahdmicam"
         minSdkVersion 10
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        versionCode getVersionCode()
+        versionName getVersionName()
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
@@ -52,21 +47,22 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
     }
 
-//    compileOptions {
-//        sourceCompatibility JavaVersion.VERSION_1_6
-//        targetCompatibility JavaVersion.VERSION_1_6
-//    }
-}
+    dependencies {
+        implementation 'com.github.ma1co.OpenMemories-Framework:framework:-SNAPSHOT'
+        compileOnly 'com.github.ma1co.OpenMemories-Framework:stubs:-SNAPSHOT'
+        implementation 'com.nanohttpd:nanohttpd:2.1.1'
+    }
 
-//android.applicationVariants.all { variant ->
-//    variant.outputs.each { output ->
-//        def apkName = "PMCADemo-${output.baseName}-${variant.versionName}.apk"
-//        output.outputFile = new File(output.outputFile.parent, apkName)
-//    }
-//}
+    applicationVariants.all {
+        variant ->
+            variant.outputs.each {
+                output ->
+                    def name = applicationId+"-"+versionName+"."+versionCode+".apk"
+                    output.outputFileName = name
+            }
+    }
 
-dependencies {
-    implementation 'com.github.ma1co.OpenMemories-Framework:framework:-SNAPSHOT'
-    compileOnly 'com.github.ma1co.OpenMemories-Framework:stubs:-SNAPSHOT'
-    implementation 'com.nanohttpd:nanohttpd:2.1.1'
+    lint {
+        baseline = file("lint-baseline.xml")
+    }
 }

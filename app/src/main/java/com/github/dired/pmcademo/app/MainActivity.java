@@ -1,4 +1,4 @@
-package com.github.dired.pmcademo.app;
+package com.github.dired.pmcahdmicam;
 
 import android.app.Activity;
 import android.content.Intent;
