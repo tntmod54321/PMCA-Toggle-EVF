@@ -1,4 +1,4 @@
-package com.github.dired.pmcahdmicam;
+package com.github.dired.pmcaevftoggle;
 
 import android.graphics.Point;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ public class DisplayActivity extends BaseActivity {
     private DisplayManager.Display displays[] = {
         DisplayManager.Display.SCREEN,
         DisplayManager.Display.FINDER,
-        DisplayManager.Display.NONE,
+        // DisplayManager.Display.NONE,
     };
 
     private TextView textView;
@@ -22,12 +22,19 @@ public class DisplayActivity extends BaseActivity {
         setContentView(R.layout.log);
 
         textView = (TextView) findViewById(R.id.logView);
+		
+		// int currentDisplay = Arrays.asList(displays).indexOf(getDisplayManager().getActiveDisplay());
+        // int nextDisplay = (currentDisplay + 1) % displays.length;
+        // getDisplayManager().setActiveDisplay(displays[nextDisplay]);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         logDisplay();
+		// int currentDisplay = Arrays.asList(displays).indexOf(getDisplayManager().getActiveDisplay());
+        // int nextDisplay = (currentDisplay + 1) % displays.length;
+        // getDisplayManager().setActiveDisplay(displays[nextDisplay]);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.github.dired.pmcahdmicam;
+package com.github.dired.pmcaevftoggle;
 
 import android.content.Context;
 import android.util.AttributeSet;

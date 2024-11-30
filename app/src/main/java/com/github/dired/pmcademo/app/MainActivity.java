@@ -1,75 +1,82 @@
-package com.github.dired.pmcahdmicam;
+package com.github.dired.pmcaevftoggle;
 
-import android.app.Activity;
-import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.TextView;
+import com.github.ma1co.openmemories.framework.DisplayManager;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
+import java.util.Arrays;
 
-public class MainActivity extends BaseActivity implements AdapterView.OnItemClickListener {
-    protected class ActivityListItem extends ListAdapter.ListItem {
-        private int nameResource;
-        private Class<? extends Activity> clazz;
-
-        public ActivityListItem(int nameResource, Class<? extends Activity> clazz) {
-            this.nameResource = nameResource;
-            this.clazz = clazz;
-        }
-
-        @Override
-        public String getText1() {
-            return getResources().getString(nameResource);
-        }
-
-        public Class<? extends Activity> getActivityClass() {
-            return clazz;
-        }
-    }
-
-    protected ActivityListItem activities[] = {
-        new ActivityListItem(R.string.title_activity_camera, CameraActivity.class),
-        new ActivityListItem(R.string.title_activity_key_event, KeyEventActivity.class),
-        new ActivityListItem(R.string.title_activity_property, PropertyActivity.class),
-        new ActivityListItem(R.string.title_activity_time, TimeActivity.class),
-        new ActivityListItem(R.string.title_activity_wifi, WifiActivity.class),
-        new ActivityListItem(R.string.title_activity_wifi_setting, WifiSettingActivity.class),
-        new ActivityListItem(R.string.title_activity_wifi_direct, WifiDirectActivity.class),
-        new ActivityListItem(R.string.title_activity_display, DisplayActivity.class),
-        new ActivityListItem(R.string.title_activity_led, LedActivity.class),
-        new ActivityListItem(R.string.title_activity_playback, PlaybackActivity.class),
-        new ActivityListItem(R.string.title_activity_install, InstallActivity.class),
+// public class DisplayActivity extends BaseActivity {
+public class MainActivity extends BaseActivity {
+    private DisplayManager.Display displays[] = {
+        DisplayManager.Display.SCREEN,
+        DisplayManager.Display.FINDER,
+        // DisplayManager.Display.NONE,
     };
+
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.list);
+        setContentView(R.layout.log);
 
-        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
-            @Override
-            public void uncaughtException(Thread thread, Throwable throwable) {
-                StringWriter sw = new StringWriter();
-                sw.append(throwable.toString());
-                sw.append("\n");
-                throwable.printStackTrace(new PrintWriter(sw));
-                Logger.error(sw.toString());
-
-                System.exit(0);
-            }
-        });
-
-        ListView listView = (ListView) findViewById(R.id.listView);
-        listView.setAdapter(new ListAdapter<ActivityListItem>(this, activities));
-        listView.setOnItemClickListener(this);
+        textView = (TextView) findViewById(R.id.logView);
+		
+		// int currentDisplay = Arrays.asList(displays).indexOf(getDisplayManager().getActiveDisplay());
+        // int nextDisplay = (currentDisplay + 1) % displays.length;
+        // getDisplayManager().setActiveDisplay(displays[nextDisplay]);
     }
 
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-        ActivityListItem item = (ActivityListItem) adapterView.getItemAtPosition(position);
-        startActivity(new Intent(this, item.getActivityClass()));
+    protected void onResume() {
+        super.onResume();
+        logDisplay();
+		// int currentDisplay = Arrays.asList(displays).indexOf(getDisplayManager().getActiveDisplay());
+        // int nextDisplay = (currentDisplay + 1) % displays.length;
+        // getDisplayManager().setActiveDisplay(displays[nextDisplay]);
+    }
+
+    @Override
+    protected boolean onEnterKeyUp() {
+        int currentDisplay = Arrays.asList(displays).indexOf(getDisplayManager().getActiveDisplay());
+        int nextDisplay = (currentDisplay + 1) % displays.length;
+        getDisplayManager().setActiveDisplay(displays[nextDisplay]);
+        return true;
+    }
+
+    @Override
+    public void displayChanged(DisplayManager.Display display) {
+        super.displayChanged(display);
+        logDisplay();
+    }
+
+    protected void logDisplay() {
+        DisplayManager.Display display = getDisplayManager().getActiveDisplay();
+        logDisplay(display.toString(), getDisplayManager().getDisplayInfo(display));
+        logDisplay("Frame buffer", getDisplayManager().getFrameBufferInfo());
+    }
+
+    protected void logDisplay(String displayName, DisplayManager.DisplayInfo info) {
+        Point aspect = approxFraction(info.aspectRatio, 16);
+        log(displayName + ": " + info.width + " x " + info.height + " (" + aspect.x + ":" + aspect.y + ")");
+    }
+
+    protected void log(String msg) {
+        textView.append(msg + "\n");
+    }
+
+    protected Point approxFraction(float n, int maxDenominator) {
+        float bestError = 0;
+        int bestDenominator = 0;
+        for (int i=1; i<=maxDenominator; i++) {
+            float error = Math.abs(n - 1f * Math.round(n * i) / i);
+            if (error < bestError || i == 1) {
+                bestError = error;
+                bestDenominator = i;
+            }
+        }
+        return new Point(Math.round(n * bestDenominator), bestDenominator);
     }
 }

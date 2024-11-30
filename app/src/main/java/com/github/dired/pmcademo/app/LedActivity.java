@@ -1,4 +1,4 @@
-package com.github.dired.pmcahdmicam;
+package com.github.dired.pmcaevftoggle;
 
 import com.sony.scalar.hardware.indicator.Light;
 

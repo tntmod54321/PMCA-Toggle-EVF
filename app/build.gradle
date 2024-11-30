@@ -34,7 +34,7 @@ android {
     compileSdkVersion 28
 
     defaultConfig {
-        applicationId "com.github.dired.pmcahdmicam"
+        applicationId "com.github.dired.pmcaevftoggle"
         minSdkVersion 10
         targetSdkVersion 28
         versionCode getVersionCode()

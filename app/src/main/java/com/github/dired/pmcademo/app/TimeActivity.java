@@ -1,4 +1,4 @@
-package com.github.dired.pmcahdmicam;
+package com.github.dired.pmcaevftoggle;
 
 import android.os.Bundle;
 import android.widget.TextView;
